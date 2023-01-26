@@ -6,8 +6,15 @@ void main() {
   ));
 }
 
-class ProfileCard extends StatelessWidget {
+class ProfileCard extends StatefulWidget {
   const ProfileCard({super.key});
+
+  @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  int godPowerLevel = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +25,15 @@ class ProfileCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[700],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() {
+          godPowerLevel++;
+        }),
+        child: Icon(
+          Icons.add,
+        ),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -54,7 +70,7 @@ class ProfileCard extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              '150',
+              '$godPowerLevel',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
